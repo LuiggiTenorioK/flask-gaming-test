@@ -30,8 +30,11 @@ class UserList(Resource):
         """Creates a new User """
         data = request.json
         user = save_new_user(data)
-        response = Auth.login_user(data)
-        return response
+        if user:
+            response = Auth.login_user(data)
+            return response
+        else:
+            return "Email or Username Already Taken", 409
 
 
 @api.route('/<userId>')

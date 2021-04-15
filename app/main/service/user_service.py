@@ -18,7 +18,7 @@ def save_new_user(data):
         )
         db.session.add(new_user)
         db.session.commit()
-        return user
+        return new_user
     else:
         return None
 
