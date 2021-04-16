@@ -12,7 +12,7 @@ from app.main.model import user
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 HOST = '0.0.0.0'
-PORT = '8000'
+PORT = '80'
 
 sys.path.insert(0, os.path.join(BASE_DIR, 'src'))
 
@@ -40,7 +40,7 @@ class GunicornServer(Command):
         run_args.append('-b '+HOST+':'+PORT)
         run_args.append('--reload')
         run_args.append('--log-level=debug')
-        run_args.append('manage:app')
+        run_args.append('app:app')
         subprocess.Popen([os.path.join(os.path.dirname(sys.executable), 'gunicorn')] + run_args).wait()
 
 
